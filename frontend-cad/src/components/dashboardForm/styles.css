@@ -1,0 +1,58 @@
+.dashboard-container{
+    max-width: 500px;
+    margin: 40px auto;
+    padding-top: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-textfields{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0px;
+}
+
+
+
+.dashboard-textfields > input{
+    border: 1px solid #c4c4c4;
+    border-radius: 12px;
+    padding: 9px;
+    background: #F8F8F8;
+    box-shadow: 0px 5px 10px #ececec;   
+}
+
+input[name=rua] {
+    width: 340px;
+    margin-right: 10px;
+}
+
+input[name=numero] {
+    width: 150px;
+}
+
+input[name=municipio] {
+    width: 340px;
+    margin-right: 10px;
+}
+
+input[name=cep] {
+    width: 150px;
+}
+
+input[name=pais] {
+    width: 340px;
+    margin-right: 10px;
+}
+
+input[name=estado] {
+    width: 150px;
+}
+
+.sideside{
+    display: flex;
+    flex-direction:row;
+}
+
