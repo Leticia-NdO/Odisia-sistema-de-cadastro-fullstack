@@ -1,6 +1,10 @@
 import DashboardForm from "../../components/dashboardForm"
 
-function DashboardPage(){
+
+function DashboardPage() {
+
+
+
     return (
         <DashboardForm />
     )

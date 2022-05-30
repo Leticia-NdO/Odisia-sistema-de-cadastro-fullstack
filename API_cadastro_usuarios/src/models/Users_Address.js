@@ -50,7 +50,7 @@ Usuario.hasOne(Address, {
     }
 })
 
-// // Address.belongsTo(Usuario)
+// Address.belongsTo(Usuario)
 
 // Address.sync({ force: true })
 

@@ -21,6 +21,7 @@ routes.post('/login', passport.authenticate('local', {
 routes.get('/editar/:id', UserController.editarRender)
 routes.post('/atualizar/:id', UserController.atualizar)
 routes.get('/deletar/:id', UserController.deletar)
+routes.get('/user/:id', UserController.findOne)
 
 
 export { routes }

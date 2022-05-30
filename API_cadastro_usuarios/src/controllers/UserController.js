@@ -31,12 +31,12 @@ class UserController {
                 rua: requestBody.rua,
                 numero: requestBody.numero,
                 user_Id: usuarioDataValues.id
-            }).then((address)=>{
+            }).then((address) => {
 
-                response.status(200).json({usuario: usuario, endereco: address})
+                response.status(200).json({ usuario: usuario, endereco: address })
             })
 
-            
+
 
         }).catch((err) => {
             response.send('Não foi possível cadastrar o novo usuário. Tente novamente mais tarde.')
@@ -55,7 +55,7 @@ class UserController {
             where: {
                 user_Id: requestUser.id
             }
-        }).then(async(address) => {
+        }).then(async (address) => {
 
             const userWhole = {        // criar um novo objeto com os dados pessoais e o endereço
                 ...requestUser,
@@ -66,7 +66,7 @@ class UserController {
             response.json(userWhole);
 
             const auth = response.getHeaders('authorization').authorization
-            
+
         })
 
     }
@@ -76,24 +76,24 @@ class UserController {
             where: {
                 id: request.params.id
             }
-        })        
-        .then((usuario) => {
-            Address.findOne({
-                where: {
-                    user_Id: usuario.id
-                }
-            }).then((address) => {
+        })
+            .then((usuario) => {
+                Address.findOne({
+                    where: {
+                        user_Id: usuario.id
+                    }
+                }).then((address) => {
 
-                const userWhole = {
-                    ...usuario.dataValues,
-                    address: address.dataValues
-                }
+                    const userWhole = {
+                        ...usuario.dataValues,
+                        address: address.dataValues
+                    }
 
-                response.status(200).json(userWhole)
+                    response.status(200).json(userWhole)
+
+                })
 
             })
-
-        })
     }
 
     logout(request, response) {
@@ -107,25 +107,25 @@ class UserController {
             where: {
                 id: request.params.id
             }
-        })        
-        .then((usuario) => {
-            Address.findOne({
-                where: {
-                    user_Id: usuario.id
-                }
-            }).then((address) => {
+        })
+            .then((usuario) => {
+                Address.findOne({
+                    where: {
+                        user_Id: usuario.id
+                    }
+                }).then((address) => {
 
-                const userWhole = {
-                    ...usuario.dataValues,
-                    address: address.dataValues
-                }
+                    const userWhole = {
+                        ...usuario.dataValues,
+                        address: address.dataValues
+                    }
 
-                console.log(userWhole)
-                response.status(200).json(userWhole)
+                    console.log(userWhole)
+                    response.status(200).json(userWhole)
+
+                })
 
             })
-
-        })
     }
 
     async atualizar(request, response) {
@@ -138,7 +138,7 @@ class UserController {
             where: {
                 id: request.params.id
             }
-        }).then(()=>{
+        }).then(() => {
 
             Address.update({
                 pais: request.body.pais,
@@ -152,7 +152,7 @@ class UserController {
                     user_Id: request.params.id
                 }
             })
-        
+
             response.redirect('/dashboard')
 
         })
@@ -175,6 +175,33 @@ class UserController {
             response.redirect('/login')
         })
 
+    }
+
+    async findOne(request, response) {
+        
+        await Usuario.findOne({
+            where: {
+                id: request.params.id
+            }
+        })
+            .then((usuario) => {
+                Address.findOne({
+                    where: {
+                        user_Id: usuario.id
+                    }
+                }).then((address) => {
+
+                    const userWhole = {
+                        ...usuario.dataValues,
+                        address: address.dataValues
+                    }
+
+                    console.log(userWhole)
+                    response.status(200).json(userWhole)
+
+                })
+
+            })
     }
 
 }

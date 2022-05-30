@@ -77,6 +77,7 @@ function RegisterForm() {
                         if (page === 2) {
                             console.log(formData)
                             navigate('/dashboard/1')
+                            
                         } else {
                             setPage((currPage => currPage + 1))
                         }

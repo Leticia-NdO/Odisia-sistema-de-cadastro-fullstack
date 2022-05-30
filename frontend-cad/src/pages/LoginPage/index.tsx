@@ -1,7 +1,12 @@
+
 import LoginCard from "../../components/loginCard"
-function LoginPage (){
+
+
+function LoginPage() {
+
+
     return (
-        <LoginCard/>
+        <LoginCard />
     )
 }
 

@@ -1,20 +1,18 @@
 import express, { request, response } from "express"
 import { routes } from "./routes.js"
-import conn from './database/db.js'
 import { engine } from 'express-handlebars'
 import bodyParser from 'body-parser'
-import Usuario from "./models/Usuarios.js"
-import { Address } from "./models/Users_Address.js"
 import passport from 'passport'
 import flash from 'express-flash'
 import session from 'express-session'
 import dotenv from 'dotenv'
-import sequelize from 'sequelize'
 import methodOverride from 'method-override'
+import corsMiddleware from './cors/index.js'
 
 
 dotenv.config()
 const app = express()
+app.use(corsMiddleware)
 
 import initializePassport from '../passport-config.js'
 initializePassport(passport)
