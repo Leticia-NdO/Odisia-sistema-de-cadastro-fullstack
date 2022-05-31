@@ -1,7 +1,6 @@
 import './styles.css'
+
 function LoginCard() {
-
-
 
     return (
         <>

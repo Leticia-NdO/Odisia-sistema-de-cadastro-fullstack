@@ -3,13 +3,16 @@ import "./styles.css"
 import { User } from "../../types/user"
 import { BASE_URL } from "../../utils/requests"
 import axios from "axios"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-function DashboardForm() {
+type Props = {
+    userId: string;
+}
+
+function DashboardForm({userId}: Props) {  // recebe o params da página
 
     const navigate = useNavigate()
-    const params = useParams()
+
     const [user, setUser] = useState<User>({
         id: 0,
         nome: "",
@@ -33,18 +36,15 @@ function DashboardForm() {
 
     useEffect(() => {
 
-        axios.get(`${BASE_URL}/user/${params.id}`).then((result) => {
+        axios.get(`${BASE_URL}/user/${userId}`).then((result) => {   // usa o params pra buscar o usuário no backend
 
             const data = result.data as User
-            console.log(params.id)
-            console.log(data)
-            console.log("olá")
             setUser(data)
 
         }).catch((err) => console.log(err))
 
 
-    }, [params.id])
+    }, [userId])
 
     return (
         <>
@@ -104,7 +104,7 @@ function DashboardForm() {
 
                 </div>
 
-                <button onClick={() => navigate("/edit/1")}>Editar</button> <button onClick={() => navigate('/')}>Log out</button>
+                <button onClick={() => navigate(`/edit/${userId}`)}>Editar</button> <button onClick={() => navigate('/')}>Log out</button>
             </div>
         </>
 

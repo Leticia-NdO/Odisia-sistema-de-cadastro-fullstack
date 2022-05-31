@@ -5,6 +5,8 @@ import SignUpInfo from "./signup"
 import './styles.css'
 import { FormData } from "../../types/form"
 import { useNavigate } from 'react-router-dom';
+import axios, { AxiosRequestConfig } from "axios"
+import { BASE_URL } from "../../utils/requests"
 
 function RegisterForm() {
 
@@ -28,6 +30,7 @@ function RegisterForm() {
     const StepDisplay = () => {
         if (page === 0) {
             return <SignUpInfo formData={formData} setFormData={setFormData} />
+
         } else if (page === 1) {
             return <Address formData={formData} setFormData={setFormData} />
         }
@@ -44,7 +47,7 @@ function RegisterForm() {
 
 
                     <div style={{ width: page === 0 ? "33.3%" : page === 1 ? "66.6%" : "100%" }}>
-                        <p style={{color: "white", fontWeight: 800}}>{page === 0 ? "1" : page === 1? "2" : "3"}</p>
+                        <p style={{ color: "white", fontWeight: 800 }}>{page === 0 ? "1" : page === 1 ? "2" : "3"}</p>
                     </div>
 
 
@@ -56,7 +59,7 @@ function RegisterForm() {
                 </div>
 
                 <div className="card-body">
-                    {StepDisplay()}
+                    {StepDisplay()}  {/* dependendo da página, essa função vai retornar um componente diferente */}
                 </div>
 
                 <div className="card-footer">
@@ -75,9 +78,24 @@ function RegisterForm() {
 
                     <button onClick={() => {
                         if (page === 2) {
-                            console.log(formData)
-                            navigate('/dashboard/1')
-                            
+
+                            const config: AxiosRequestConfig = {
+                                baseURL: BASE_URL,
+                                method: 'POST',
+                                url: '/registro',
+                                data: formData
+                            }
+
+                            axios(config).then((response) => {
+
+                                console.log(response.data.usuario)
+                                if (response.data.usuario) {
+                                    navigate(`/dashboard/${response.data.usuario.id}`)
+                                }
+                            })
+
+
+
                         } else {
                             setPage((currPage => currPage + 1))
                         }

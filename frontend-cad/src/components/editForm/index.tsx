@@ -2,14 +2,17 @@ import { useNavigate } from "react-router-dom"
 import { User } from "../../types/user"
 import { BASE_URL } from "../../utils/requests"
 import axios from "axios"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-function EditForm() {
+type Props = {
+    userId: string
+}
+
+function EditForm({userId}: Props) {
 
     const navigate = useNavigate()
 
-    const params = useParams()
+    
     const [user, setUser] = useState<User>({
         id: 0,
         nome: "",
@@ -32,10 +35,10 @@ function EditForm() {
 
     useEffect(() => {
 
-        axios.get(`${BASE_URL}/user/${params.id}`).then((result) => {
+        axios.get(`${BASE_URL}/user/${userId}`).then((result) => {
 
             const data = result.data as User
-            console.log(params.id)
+            console.log(userId)
             console.log(data)
             console.log("olá")
             setUser(data)
@@ -43,7 +46,7 @@ function EditForm() {
         }).catch((err) => console.log(err))
 
 
-    }, [params.id])
+    }, [userId])
 
     return (
         <>
@@ -102,7 +105,7 @@ function EditForm() {
 
                 </div>
 
-                <button>Salvar</button> <button onClick={() => navigate('/dashboard/1')}>Voltar</button>
+                <button>Salvar</button> <button onClick={() => navigate(`/dashboard/${userId}`)}>Voltar</button>
             </div>
         </>
     )
