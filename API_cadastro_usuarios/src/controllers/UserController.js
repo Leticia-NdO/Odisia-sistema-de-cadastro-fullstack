@@ -138,7 +138,7 @@ class UserController {
             where: {
                 id: request.params.id
             }
-        }).then(() => {
+        }).then((usuario) => {
 
             Address.update({
                 pais: request.body.pais,
@@ -151,10 +151,16 @@ class UserController {
                 where: {
                     user_Id: request.params.id
                 }
+            }).then((address)=>{
+                const userWhole = {
+                    ...usuario.dataValues,
+                    address: address.dataValues
+                }
+
+                response.status(200).json(userWhole)
             })
 
-            response.redirect('/dashboard')
-
+            
         })
 
     }

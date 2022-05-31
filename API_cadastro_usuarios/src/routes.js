@@ -19,7 +19,7 @@ routes.post('/login', passport.authenticate('local', {
     failureFlash: true
 }, console.log()))
 routes.get('/editar/:id', UserController.editarRender)
-routes.post('/atualizar/:id', UserController.atualizar)
+routes.put('/atualizar/:id', UserController.atualizar)
 routes.get('/deletar/:id', UserController.deletar)
 routes.get('/user/:id', UserController.findOne)
 
