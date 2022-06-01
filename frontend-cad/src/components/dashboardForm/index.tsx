@@ -50,7 +50,10 @@ function DashboardForm({userId}: Props) {  // recebe o params da página
         <>
 
             <div className="dashboard-container">
-                <h1>Olá {user.nome}!</h1>
+                <h1>Olá, {user.nome}!</h1>
+                <hr />
+                
+                <h3>Aqui estão as suas informações pessoais:</h3>
 
                 <div className='textfield'>
                     <label htmlFor="nome">Nome</label>

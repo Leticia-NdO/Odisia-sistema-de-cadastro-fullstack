@@ -74,7 +74,7 @@ function EditForm({ userId }: Props) {
     return (
         <>
             <div className="dashboard-container">
-                <h1>Olá {user.nome}!</h1>
+                <h1>Editar informações</h1>
 
                 <div className='textfield'>
                     <label htmlFor="nome">Nome</label>
@@ -155,11 +155,13 @@ function EditForm({ userId }: Props) {
                     }
 
                     axios(config).then((response) => {
-                        console.log(response)
+                        window.alert("Informações atualizadas com sucesso!")
                     }).catch((err) => {
                         console.log(err)
                     })
                 }}>Salvar</button> <button onClick={() => navigate(`/dashboard/${userId}`)}>Voltar</button>
+
+                <button>Excluir perfil</button>
             </div>
         </>
     )

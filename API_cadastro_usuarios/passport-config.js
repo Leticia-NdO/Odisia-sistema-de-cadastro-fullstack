@@ -17,10 +17,11 @@ function initialize(passport) {
 
             await bcrypt.compare(senha, usuario.senha, (erro, batem) => {
                 if (batem) {
+
                     const accessToken = Control.generateToken(usuario.dataValues)
-                    usuario.dataValues = {...usuario, accessToken: accessToken}
+                    const newusuario = [{...usuario.dataValues}, accessToken]  // esse array que será enviado ao front
+                    return done(null, newusuario)
                     
-                    return done(null, usuario)
                 } else {
                     return done(null, false, { message: "senha incorreta" })
                 }
