@@ -161,7 +161,11 @@ function EditForm({ userId }: Props) {
                     })
                 }}>Salvar</button> <button onClick={() => navigate(`/dashboard/${userId}`)}>Voltar</button>
 
-                <button>Excluir perfil</button>
+                <button onClick={() => {
+                    if (window.confirm("Você realmente deseja excluir o seu perfil?")) {
+                        axios.get(`${BASE_URL}/deletar/${userId}`).then(() => navigate("/"))
+                    }
+                }}>Excluir perfil</button>
             </div>
         </>
     )

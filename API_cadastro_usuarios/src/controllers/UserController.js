@@ -178,7 +178,7 @@ class UserController {
                 id: request.params.id
             }
         }).then(() => {
-            response.redirect('/login')
+            response.status(200).send("Perfil excluído com sucesso")
         })
 
     }
