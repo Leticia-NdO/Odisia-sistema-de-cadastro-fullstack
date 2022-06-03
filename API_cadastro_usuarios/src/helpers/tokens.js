@@ -1,22 +1,40 @@
 import jwt from 'jsonwebtoken'
+import Usuario from '../models/Usuarios.js'
+import Bundle from './bundle.js'
+import { Address } from '../models/Users_Address.js'
 
 class Control {
 
+
+    async teste(request, response, next) {
+        const token2 = request.headers.authorization
+        console.log(token2)
+        next()
+    }
+
     async authenticateToken(request, response, next) {
 
-        const authHeader = response.getHeaders('authorization').authorization // é o valor do headers no campo authorization, que terá o valor: Bearer *token*
-        const token = authHeader && authHeader.split(' ')[1] // Se o campo authorization não estiver vazio, a const token será o elemento [1] do valor em authorization, ou seja, o que vem depois de Bearer (o token)
-        if (token == null) return response.sendStatus(401) // se o campo authorization estiver vazio, token será null
+        const token = request.headers.authorization
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {  // se não estiver vazio, ele vai pegar o token e deserializar ele usando a chave.
-            if (err) return response.sendStatus(403)  // se a deserialização não funcionar com a chave, dá erro.
-            request.user = user // se for possível deserializar com a chave, devolverá o request.user
+        if (!token) return response.status(403).send("Forbidden acess")
+
+        if (token === undefined || null) return response.status(401)
+
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, result) => {
+            if (err) {
+                console.log(err)
+                return response.status(403)
+            }
+
+            Bundle.setBundle(request, result, null)
             next()
         })
     }
 
     generateToken(user) {
-        return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+        return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: 43200  // 12 hours
+        })
     }
 }
 

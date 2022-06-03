@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt'
 import Control from '../helpers/tokens.js'
 
 
-
 class UserController {
 
     async create(request, response) {
@@ -45,9 +44,9 @@ class UserController {
 
     }
 
-    logout(request, response) {
-        request.logOut()
-        response.redirect('/')
+    async logout(request, response) {
+        await request.logOut()
+        response.status(200).send("Usuário deslogado com sucesso")
     }
 
     async atualizar(request, response) {

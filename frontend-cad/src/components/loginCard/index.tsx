@@ -29,7 +29,7 @@ function LoginCard() {
 
                 <div className='textfield'>
                     <label htmlFor="senha">Senha</label>
-                    <input type="password" name='senha' placeholder='Insira sua senha' onChange={(event) => setLoginRequest({ ...loginRequest, senha: event.target.value })}/>
+                    <input type="password" name='senha' placeholder='Insira sua senha' onChange={(event) => setLoginRequest({ ...loginRequest, senha: event.target.value })} />
                 </div>
 
                 <button className='btn-login' onClick={() => {
@@ -37,11 +37,17 @@ function LoginCard() {
                         baseURL: BASE_URL,
                         method: 'POST',
                         url: '/login',
-                        data: loginRequest
+                        data: loginRequest,
+ 
                     }
 
                     axios(config).then((response) => {
-                        if(response.status === 200){                            
+
+                        
+                        if (response.status === 200) {
+
+                            axios.defaults.headers.common['Authorization'] = `${response.data[1]}`;
+
                             navigate(`/dashboard/${response.data[0].id}`)
                         }
                     }).catch((err) => {

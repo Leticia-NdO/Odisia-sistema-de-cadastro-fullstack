@@ -68,10 +68,13 @@ function EditForm({ userId }: Props) {
             })
             setUser(data)
 
-        }).catch((err) => console.log(err))
+        }).catch((err) => {
+            console.log(err)
+            navigate('/forbidden')
+        })
 
 
-    }, [userId])
+    }, [userId, navigate])
 
     return (
         <>

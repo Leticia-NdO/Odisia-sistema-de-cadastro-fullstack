@@ -9,7 +9,7 @@ type Props = {
     userId: string;
 }
 
-function DashboardForm({userId}: Props) {  // recebe o params da página
+function DashboardForm({ userId }: Props) {  // recebe o params da página
 
     const navigate = useNavigate()
 
@@ -37,14 +37,16 @@ function DashboardForm({userId}: Props) {  // recebe o params da página
     useEffect(() => {
 
         axios.get(`${BASE_URL}/user/${userId}`).then((result) => {   // usa o params pra buscar o usuário no backend
-
             const data = result.data as User
             setUser(data)
 
-        }).catch((err) => console.log(err))
+        }).catch((err) => {
+            console.log(err)
+            navigate('/forbidden')
+        })
 
 
-    }, [userId])
+    }, [userId, navigate])
 
     return (
         <>
@@ -52,7 +54,7 @@ function DashboardForm({userId}: Props) {  // recebe o params da página
             <div className="dashboard-container">
                 <h1>Olá, {user.nome}!</h1>
                 <hr />
-                
+
                 <h3>Aqui estão as suas informações pessoais:</h3>
 
                 <div className='textfield'>
@@ -107,7 +109,16 @@ function DashboardForm({userId}: Props) {  // recebe o params da página
 
                 </div>
 
-                <button onClick={() => navigate(`/edit/${userId}`)}>Editar</button> <button onClick={() => navigate('/')}>Log out</button>
+                <button onClick={() => navigate(`/edit/${userId}`)}>Editar</button> <button onClick={() => {
+
+                    if (window.confirm("Você realmente deseja sair?")) {
+                        axios.delete(`${BASE_URL}/logout`).then(() => {
+                            navigate('/')
+                        }).catch((err) => console.log(err))
+                    }
+                    return
+                }
+                }>Log out</button>
             </div>
         </>
 
