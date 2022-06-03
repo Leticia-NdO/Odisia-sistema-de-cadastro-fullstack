@@ -300,7 +300,7 @@ function Address({ formData, setFormData }: Props) {
                     <option value="SE">Sergipe</option>
                     <option value="TO">Tocantins</option>
                 </select>
-                {/* <input type="text" name='estado' placeholder='Insira o estado onde mora' defaultValue={formData.estado} onChange={(event) => setFormData({ ...formData, estado: event.target.value })} /> */}
+
             </div>
             <div className='textfield'>
                 <label htmlFor="municipio">Município</label>

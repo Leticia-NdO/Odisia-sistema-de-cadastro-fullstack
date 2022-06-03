@@ -1,5 +1,6 @@
 import { FormData } from "../../types/form"
 import { validateEmail } from "../../utils/validate"
+import MaskedInputCPF from "../maskedInput/MaskedInputCpf"
 
 
 type Props = {
@@ -34,7 +35,7 @@ function SignUpInfo({ formData, setFormData }: Props) {
 
             <div className='textfield'>
                 <label htmlFor="cpf">CPF</label>
-                <input type="text" name='cpf' placeholder='Insira seu CPF' defaultValue={formData.cpf} onChange={(event) => setFormData({ ...formData, cpf: event.target.value })} />
+                <MaskedInputCPF value={formData.cpf} onChange={(event: any) => { setFormData({ ...formData, cpf: event.target.value }) }} />
             </div>
         </>
     )

@@ -32,6 +32,15 @@
     box-shadow: 0px 5px 10px #ececec;
 }
 
+.textfield > MaskedInput{
+    width: 100%;
+    border: 1px solid #c4c4c4;
+    border-radius: 12px;
+    padding: 9px;
+    background: #F8F8F8;
+    box-shadow: 0px 5px 10px #ececec;
+}
+
 
 .btn-login{
     width: 100%;

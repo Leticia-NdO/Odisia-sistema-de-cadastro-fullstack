@@ -45,87 +45,9 @@ class UserController {
 
     }
 
-    async dashboard(request, response, next) {
-
-        const requestUser = request.user.dataValues
-        // const accessToken = request.user.accessToken
-        // response.setHeader('authorization', `Bearer ${accessToken}`)
-
-        await Address.findOne({
-            where: {
-                user_Id: requestUser.id
-            }
-        }).then(async (address) => {
-
-            const userWhole = {        // criar um novo objeto com os dados pessoais e o endereço
-                ...requestUser,
-                address: address.dataValues
-            }
-
-            Control.authenticateToken()
-            response.json(userWhole);
-
-            const auth = response.getHeaders('authorization').authorization
-
-        })
-
-    }
-    async dashboard2(request, response) {
-
-        await Usuario.findOne({
-            where: {
-                id: request.params.id
-            }
-        })
-            .then((usuario) => {
-                Address.findOne({
-                    where: {
-                        user_Id: usuario.id
-                    }
-                }).then((address) => {
-
-                    const userWhole = {
-                        ...usuario.dataValues,
-                        address: address.dataValues
-                    }
-
-                    response.status(200).json(userWhole)
-
-                })
-
-            })
-    }
-
     logout(request, response) {
         request.logOut()
         response.redirect('/')
-    }
-
-    async editarRender(request, response) {
-
-        await Usuario.findOne({
-            where: {
-                id: request.params.id
-            }
-        })
-            .then((usuario) => {
-                Address.findOne({
-                    where: {
-                        user_Id: usuario.id
-                    }
-                }).then((address) => {
-
-                    const userWhole = {
-                        ...usuario.dataValues,
-                        address: address.dataValues
-                    }
-
-                    console.log(userWhole)
-                    response.status(200).json(userWhole)
-
-                })
-
-            })
     }
 
     async atualizar(request, response) {

@@ -1,6 +1,5 @@
 import express, { request, response } from "express"
 import { routes } from "./routes.js"
-import { engine } from 'express-handlebars'
 import bodyParser from 'body-parser'
 import passport from 'passport'
 import flash from 'express-flash'
@@ -17,9 +16,6 @@ app.use(corsMiddleware)
 import initializePassport from '../passport-config.js'
 initializePassport(passport)
 
-// Handlebars
-app.engine('handlebars', engine({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }))
