@@ -1,8 +1,7 @@
-# Odisia 
+<h1 align="center">Odisia</h1>
 
+<h3 align="center">Sistema de cadastro Full-Stack (projeto em desenvolvimento)</h3>
 
-
-### Sistema de cadastro Full-Stack (projeto em desenvolvimento)
 
 ## Sobre o projeto:
 
