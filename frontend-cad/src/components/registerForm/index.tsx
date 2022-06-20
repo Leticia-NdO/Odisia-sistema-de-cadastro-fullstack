@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import axios, { AxiosRequestConfig } from "axios"
 import { BASE_URL } from "../../utils/requests"
 
+
 function RegisterForm() {
 
     const [page, setPage] = useState(0)
+    const [filledIn, setFilledIn] = useState("")
     const [formData, setFormData] = useState<FormData>({
         nome: "",
         email: "",
@@ -24,8 +26,10 @@ function RegisterForm() {
         numero: ""
     })
 
+
     const FormTitles = ['Informações pessoais', 'Endereço', 'Detalhes de endereço']
     const navigate = useNavigate();
+
 
     const StepDisplay = () => {
         if (page === 0) {
@@ -75,7 +79,6 @@ function RegisterForm() {
                     }}
                     >Voltar</button>
 
-
                     <button onClick={() => {
                         if (page === 2) {
 
@@ -87,7 +90,8 @@ function RegisterForm() {
                             }
 
                             axios(config).then((response) => {
-
+                            
+                                // [ ]: mostar mensagem de erro se o email já existir no banco de dados
                                 console.log(response.data.usuario)
                                 if (response.data.usuario) {
                                     navigate(`/dashboard/${response.data.usuario.id}`)
@@ -97,11 +101,24 @@ function RegisterForm() {
 
 
                         } else {
-                            setPage((currPage => currPage + 1))
+                            if (page === 0 && (formData.nome === "" || formData.email === "" || formData.cpf === "" || formData.senha === "")) {
+                                return setFilledIn("Por favor, preencha todos os campos")
+                            }
+                            if (page === 1 && (formData.pais === "default" || formData.estado === "default" || formData.municipio === "")) {
+                                return setFilledIn("Por favor, preencha todos os campos")
+                            }
+                            if (page === 2 && (formData.cep === "" || formData.rua === "" || formData.numero === "")) {
+                                return setFilledIn("Por favor, preencha todos os campos")
+                            }
+                            else {
+                                setFilledIn("")
+                            }
+                            return setPage((currPage => currPage + 1))
                         }
                     }}
                     >{page === 2 ? "Enviar" : "Próximo"}</button>
                 </div>
+                <span>{filledIn}</span>
             </div>
         </div>
     )

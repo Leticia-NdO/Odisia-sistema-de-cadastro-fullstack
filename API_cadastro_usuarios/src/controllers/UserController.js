@@ -7,7 +7,7 @@ import Control from '../helpers/tokens.js'
 class UserController {
 
     async create(request, response) {
-
+        // [ ]: antes de criar, verificar se o usuário já existe
         const hashedSenha = await bcrypt.hash(request.body.senha, 10)
         const requestBody = request.body
 

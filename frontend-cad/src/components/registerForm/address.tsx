@@ -6,6 +6,8 @@ type Props = {
 }
 
 function Address({ formData, setFormData }: Props) {
+
+    // [ ]: autentificação de input e mensagens de erro
     return (
         <>
             <div className='textfield'>
@@ -265,7 +267,6 @@ function Address({ formData, setFormData }: Props) {
                     <option value="Zimbabwe">Zimbabwe</option>
                     <option value="Zâmbia">Zâmbia</option>
                 </select>
-                {/* <input type="text" name='pais' placeholder='Insira seu país de origem' defaultValue={formData.pais} onChange={(event) => setFormData({ ...formData, pais: event.target.value })} /> */}
             </div>
 
             <div className='textfield'>

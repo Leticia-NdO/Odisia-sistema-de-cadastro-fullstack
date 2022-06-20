@@ -6,6 +6,8 @@ type Props = {
 }
 
 function AddressDetail({ formData, setFormData }: Props) {
+
+    // [ ]: verificação de input e mensagens de erro
     return (
         <>
             <div className='textfield'>

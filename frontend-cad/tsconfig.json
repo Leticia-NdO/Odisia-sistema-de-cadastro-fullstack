@@ -22,5 +22,56 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "COMPLETE",
+    "WARNING",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\|^|^\\s(-|\\d+.))\\s*($TAGS)",
+  "todo-tree.highlights.customHighlight": {
+    "[x]": {
+      "foreground": "#008800",
+      "icon": "verified",
+      "type": "line",
+    },
+    "[ ]": {
+      "foreground": "#f44336",
+      "type": "line",
+    },
+    "BUG": {
+      "foreground": "#f44336",
+      "type": "line",
+    },
+    "HACK": {
+      "foreground": "#d68100",
+      "type": "line",
+    },
+    "FIXME": {
+      "foreground": "#e5e902",
+      "iconColour": "#e5e902",
+      "gutterIcon": true,
+      "type": "line",
+    },
+    "TODO": {
+      "foreground": "#008800",
+      "type": "line",
+      "icon": "check"
+    },
+    "COMPLETE": {
+      "foreground": "#04ff19",
+      "type": "line",
+      "icon": "verified"
+    },
+    "WARNING": {
+      "foreground": "#f44336",
+      "type": "line",
+      "icon": "alert"
+    },
+  },
 }

@@ -19,7 +19,7 @@ function LoginCard() {
 
                 <div className='logintitle'>
                     <h1>BEM-VINDO!</h1>
-                    <p>Já tem cadastro? Faça login e cheque seus dados.</p>
+                    <p>Já tem cadastro? Faça login em sua conta da Odisia e cheque seus dados.</p>
                 </div>
 
                 <div className='textfield'>
