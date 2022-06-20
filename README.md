@@ -6,7 +6,7 @@
 
 ## Sobre o projeto:
 
-![login page](Leticia-NdO/Odisia-sistema-de-cadastro-fullstack/frontend-cad/src/assets/img/loginOdisia.png)
+![login page](https://raw.githubusercontent.com/Leticia-NdO/Odisia-sistema-de-cadastro-fullstack/master/frontend-cad/public/assets/img/loginOdisia.png)
 
 Aprimoramento da API de cadastro de usuários com back-end feito em Node.js e front-end feito em ReactJS, login local, JWT, recuperação de senha e user management.
 
